@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+</head>
+<body>
+<h2>Add Student</h2>
+<form th:action="@{/students/add}" th:object="${student}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" />
+    </div>
+    <div>
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" th:field="*{weight}" />
+    </div>
+    <div>
+        <label for="height">Height:</label>
+        <input type="number" id="height" th:field="*{height}" />
+    </div>
+    <div>
+        <label for="hairColor">Hair Color:</label>
+        <input type="text" id="hairColor" th:field="*{hairColor}" />
+    </div>
+    <div>
+        <label for="gpa">GPA:</label>
+        <input type="number" id="gpa" step="0.1" th:field="*{gpa}" />
+    </div>
+    <div>
+        <label for="major">Major:</label>
+        <input type="text" id="major" th:field="*{major}" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

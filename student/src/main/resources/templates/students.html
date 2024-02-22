@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .add-student-button {
+            position: absolute;
+            right: 0;
+            top: 1;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .add-student-button:hover {
+            background-color: #45a049;
+        }
+        .students-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 20px;
+            background: #f0f0f0;
+            padding: 20px;
+
+        }
+        .student-div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 2px solid #000;
+            background-color: #fff;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        .name, .gpa {
+            color: inherit;
+            margin: 5px 0;
+        }
+        .actions {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2>Students Information</h2>
+    <a th:href="@{/students/add}" class="add-student-button">Add New Student</a>
+    </div>
+<div>
+    <div class="students-container">
+        <div th:each="student : ${students}" class="student-div" th:style="'width:' + (${student.weight}/200*100 + 100) + 'px; height:' + (${student.height}/50*100 + 100) + 'px;'">
+            <span class="name" th:style="'color:' + ${student.hairColor}" th:text="${student.name}">Name</span>
+            <span class="gpa" th:style="'color:' + ${student.hairColor}" th:text="${student.gpa}">GPA</span>
+            <span class="major" th:style="'color:' + ${student.hairColor}" th:text="${student.major}">Major</span>
+            <div class="actions">
+                <a th:href="@{/students/update/{id}(id=${student.id})}">Update</a>
+                |
+                <a th:href="@{/students/delete/{id}(id=${student.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

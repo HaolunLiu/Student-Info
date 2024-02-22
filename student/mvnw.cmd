@@ -37,16 +37,16 @@
 @REM set title of command window
 title %0
 @REM enable echoing by setting MAVEN_BATCH_ECHO to 'on'
-@if "%MAVEN_BATCH_ECHO%" == "on"  echo %MAVEN_BATCH_ECHO%
+@if"%MAVEN_BATCH_ECHO%" == "on"  echo %MAVEN_BATCH_ECHO%
 
 @REM set %HOME% to equivalent of $HOME
-if "%HOME%" == "" (set "HOME=%HOMEDRIVE%%HOMEPATH%")
+if"%HOME%" == "" (set "HOME=%HOMEDRIVE%%HOMEPATH%")
 
 @REM Execute a user defined script before this one
-if not "%MAVEN_SKIP_RC%" == "" goto skipRcPre
+ifnot "%MAVEN_SKIP_RC%" == "" goto skipRcPre
 @REM check for pre script, once with legacy .bat ending and once with .cmd ending
-if exist "%USERPROFILE%\mavenrc_pre.bat" call "%USERPROFILE%\mavenrc_pre.bat" %*
-if exist "%USERPROFILE%\mavenrc_pre.cmd" call "%USERPROFILE%\mavenrc_pre.cmd" %*
+ifexist "%USERPROFILE%\mavenrc_pre.bat" call "%USERPROFILE%\mavenrc_pre.bat" %*
+ifexist "%USERPROFILE%\mavenrc_pre.cmd" call "%USERPROFILE%\mavenrc_pre.cmd" %*
 :skipRcPre
 
 @setlocal
@@ -57,7 +57,7 @@ set ERROR_CODE=0
 @setlocal
 
 @REM ==== START VALIDATION ====
-if not "%JAVA_HOME%" == "" goto OkJHome
+ifnot "%JAVA_HOME%" == "" goto OkJHome
 
 echo.
 echo Error: JAVA_HOME not found in your environment. >&2
@@ -67,7 +67,7 @@ echo.
 goto error
 
 :OkJHome
-if exist "%JAVA_HOME%\bin\java.exe" goto init
+ifexist "%JAVA_HOME%\bin\java.exe" goto init
 
 echo.
 echo Error: JAVA_HOME is set to an invalid directory. >&2
@@ -82,7 +82,7 @@ goto error
 :init
 
 @REM Find the project base dir, i.e. the directory that contains the folder ".mvn".
-@REM Fallback to current working directory if not found.
+@REM Fallback to current working directory ifnot found.
 
 set MAVEN_PROJECTBASEDIR=%MAVEN_BASEDIR%
 IF NOT "%MAVEN_PROJECTBASEDIR%"=="" goto endDetectBaseDir
@@ -127,27 +127,27 @@ FOR /F "usebackq tokens=1,2 delims==" %%A IN ("%MAVEN_PROJECTBASEDIR%\.mvn\wrapp
 
 @REM Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
 @REM This allows using the maven wrapper in projects that prohibit checking in binary data.
-if exist %WRAPPER_JAR% (
-    if "%MVNW_VERBOSE%" == "true" (
+ifexist %WRAPPER_JAR% (
+    if"%MVNW_VERBOSE%" == "true" (
         echo Found %WRAPPER_JAR%
     )
 ) else (
-    if not "%MVNW_REPOURL%" == "" (
+    ifnot "%MVNW_REPOURL%" == "" (
         SET WRAPPER_URL="%MVNW_REPOURL%/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar"
     )
-    if "%MVNW_VERBOSE%" == "true" (
+    if"%MVNW_VERBOSE%" == "true" (
         echo Couldn't find %WRAPPER_JAR%, downloading it ...
         echo Downloading from: %WRAPPER_URL%
     )
 
     powershell -Command "&{"^
 		"$webclient = new-object System.Net.WebClient;"^
-		"if (-not ([string]::IsNullOrEmpty('%MVNW_USERNAME%') -and [string]::IsNullOrEmpty('%MVNW_PASSWORD%'))) {"^
+		"if(-not ([string]::IsNullOrEmpty('%MVNW_USERNAME%') -and [string]::IsNullOrEmpty('%MVNW_PASSWORD%'))) {"^
 		"$webclient.Credentials = new-object System.Net.NetworkCredential('%MVNW_USERNAME%', '%MVNW_PASSWORD%');"^
 		"}"^
 		"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $webclient.DownloadFile('%WRAPPER_URL%', '%WRAPPER_JAR%')"^
 		"}"
-    if "%MVNW_VERBOSE%" == "true" (
+    if"%MVNW_VERBOSE%" == "true" (
         echo Finished downloading %WRAPPER_JAR%
     )
 )
@@ -168,7 +168,7 @@ IF NOT %WRAPPER_SHA_256_SUM%=="" (
        "  exit 1;"^
        "}"^
        "}"
-    if ERRORLEVEL 1 goto error
+    ifERRORLEVEL 1 goto error
 )
 
 @REM Provide a "standardized" way to retrieve the CLI args that will
@@ -182,7 +182,7 @@ set MAVEN_CMD_LINE_ARGS=%*
   -classpath %WRAPPER_JAR% ^
   "-Dmaven.multiModuleProjectDirectory=%MAVEN_PROJECTBASEDIR%" ^
   %WRAPPER_LAUNCHER% %MAVEN_CONFIG% %*
-if ERRORLEVEL 1 goto error
+ifERRORLEVEL 1 goto error
 goto end
 
 :error
@@ -191,15 +191,15 @@ set ERROR_CODE=1
 :end
 @endlocal & set ERROR_CODE=%ERROR_CODE%
 
-if not "%MAVEN_SKIP_RC%"=="" goto skipRcPost
+ifnot "%MAVEN_SKIP_RC%"=="" goto skipRcPost
 @REM check for post script, once with legacy .bat ending and once with .cmd ending
-if exist "%USERPROFILE%\mavenrc_post.bat" call "%USERPROFILE%\mavenrc_post.bat"
-if exist "%USERPROFILE%\mavenrc_post.cmd" call "%USERPROFILE%\mavenrc_post.cmd"
+ifexist "%USERPROFILE%\mavenrc_post.bat" call "%USERPROFILE%\mavenrc_post.bat"
+ifexist "%USERPROFILE%\mavenrc_post.cmd" call "%USERPROFILE%\mavenrc_post.cmd"
 :skipRcPost
 
-@REM pause the script if MAVEN_BATCH_PAUSE is set to 'on'
-if "%MAVEN_BATCH_PAUSE%"=="on" pause
+@REM pause the script ifMAVEN_BATCH_PAUSE is set to 'on'
+if"%MAVEN_BATCH_PAUSE%"=="on" pause
 
-if "%MAVEN_TERMINATE_CMD%"=="on" exit %ERROR_CODE%
+if"%MAVEN_TERMINATE_CMD%"=="on" exit %ERROR_CODE%
 
 cmd /C exit /B %ERROR_CODE%

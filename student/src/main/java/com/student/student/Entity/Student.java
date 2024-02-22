@@ -1,4 +1,4 @@
-package com.student.student.Entity;
+package com.student.student.entity;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -16,55 +16,71 @@ public class Student {
     private double height;
     private String hairColor;
     private double gpa;
-    
-    public Student() {
+    private String major;
+    public Student(){
     }
 
-    public Long getId() {
+    public Student(String name, double weight, double height, String hairColor, double gpa, String major){
+        this.name = name;
+        this.weight = weight;
+        this.height = height;
+        this.hairColor = hairColor;
+        this.gpa = gpa;
+        this.major = major;
+    }
+
+    public Long getId(){
         return id;
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public double getWeight() {
+    public double getWeight(){
         return weight;
     }
 
-    public double getHeight() {
+    public double getHeight(){
         return height;
     }
 
-    public String getHairColor() {
+    public String getHairColor(){
         return hairColor;
     }
 
-    public double getGpa() {
+    public double getGpa(){
         return gpa;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id){
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(String name){
         this.name = name;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(double weight){
         this.weight = weight;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(double height){
         this.height = height;
     }
 
-    public void setHairColor(String hairColor) {
+    public void setHairColor(String hairColor){
         this.hairColor = hairColor;
     }
 
-    public void setGpa(double gpa) {
+    public void setGpa(double gpa){
         this.gpa = gpa;
+    }
+    public String getMajor(){
+        return major;
+    }
+
+    public void setMajor(String major){
+        this.major = major;
     }
 }

@@ -6,37 +6,34 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.student.student.Entity.Student;
+import com.student.student.entity.Student;
 import com.student.student.repository.StudentRepository;
 
 @Service
 public class StudentService {
 
-    private final StudentRepository stuRepos;
-
     @Autowired
-    public StudentService(StudentRepository stuRepos) {
-        this.stuRepos = stuRepos;
-    }
+    private StudentRepository stuRepos;
 
-    public List<Student> getAllStu() {
+
+    public List<Student> getAllStu(){
         return stuRepos.findAll();
     }
 
-    public Optional<Student> getStuById(Long id) {
+    public Student addStu(Student student){
+        return stuRepos.save(student);
+    }
+    public Optional<Student> findById(Long id){
         return stuRepos.findById(id);
     }
-
-    public Student addStu(Student student) {
+    public Student updateStu(Long id, Student student){
+        student.setId(id);
         return stuRepos.save(student);
     }
 
-    public Student updateStu(Student student) {
-        return stuRepos.save(student);
-    }
-
-    public void deleteStu(Long id) {
+    public void deleteStu(Long id){
         stuRepos.deleteById(id);
     }
+
 }
 

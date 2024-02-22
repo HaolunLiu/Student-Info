@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student</title>
+</head>
+<body>
+<h2>Update Student</h2>
+<form th:action="@{/students/update/{id}(id=${student.id})}" th:object="${student}" method="post">
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" />
+    </div>
+    <div>
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" th:field="*{weight}" />
+    </div>
+    <div>
+        <label for="height">Height:</label>
+        <input type="number" id="height" th:field="*{height}" />
+    </div>
+    <div>
+        <label for="hairColor">Hair Color:</label>
+        <input type="text" id="hairColor" th:field="*{hairColor}" />
+    </div>
+    <div>
+        <label for="gpa">GPA:</label>
+        <input type="number" id="gpa" step="0.1" th:field="*{gpa}" />
+    </div>
+    <div>
+        <label for="major">Major:</label>
+        <input type="text" id="major" th:field="*{major}" />
+    </div>
+    <!-- Additional fields and a submit button -->
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>
